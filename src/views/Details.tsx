@@ -1,7 +1,7 @@
 import styles from "./Details.module.css"
 import NavBar from "../components/NavBar"
 import Footer from "../components/Footer"
-import products from "../../public/products"
+import products from "../assets/products"
 import { useParams } from "react-router-dom"
 import Hero from "../components/Hero"
 import Thumbs from "../components/Thumbs"
