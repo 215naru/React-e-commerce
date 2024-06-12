@@ -1,4 +1,3 @@
-import styles from "./Details.module.css"
 import NavBar from "../components/NavBar"
 import Footer from "../components/Footer"
 import products from "../assets/products"
@@ -17,19 +16,18 @@ export default function Details() {
     <>
       <NavBar/>
       {!product && <Hero first="NOT" second="found"/>}
-      <main>
-        <div className={styles["details-container"]}>
+      <main className="w-full flex justify-center items-center p-[20px]">
+        <div className="w-full flex flex-wrap justify-between">
           {product && (
-            <div id="details" className={styles["columns-container"]}>
+            <div id="details" className="w-full flex justify-center flex-wrap">
               <Thumbs product={product}/>
               <Description product={product}/>
               <Checkout product={product}/>
             </div>
           )}
-
-          <div className={styles["sales-block"]}>
-            <h2 className={styles["sales-title"]}>Ofertas de la semana</h2>
-            <div id="product-container" className={styles["product-container"]}>
+          <div className="w-full flex flex-col justify-center items-center">
+            <h2 className="text-[40px]">Ofertas de la semana</h2>
+            <div id="product-container" className="flex flex-col md:flex-row flex-wrap items-center justify-between w-full lg:w-[1024px]">
               {onsale.map((each) =>(
                 <ProductCard
                   key = {each.id}
