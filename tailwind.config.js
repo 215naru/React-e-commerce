@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors:{
+        'custom-gray':'#eaeaea',
+      },
       backgroundImage:{
         'hero': "url('/hero_bg.png')",
       },
