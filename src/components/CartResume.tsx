@@ -1,4 +1,4 @@
-export default function CartResume() {
+export default function CartResume({total}) {
   return (
     <>
       <div className="bg-[#f2f2f2] rounded-[5px] p-[30px] m-[10px] h-[220px] break-words whitespace-normal flex justify-between w-[340px] flex-col">
@@ -6,7 +6,7 @@ export default function CartResume() {
           <h2 className="flex justify-between"><span>Resumen</span><span>del</span><span>pedido</span></h2>
           <div className="flex justify-between items-center">
             <h3>Total</h3>
-            <strong className="">$800000</strong>
+            <strong className="">{total}</strong>
           </div>
           <small className="pb-[10px]">Incluye impuesto PAIS y percepción AFIP.</small>
         </div>
