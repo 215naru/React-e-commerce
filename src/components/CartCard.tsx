@@ -1,4 +1,5 @@
-export default function CartCard({title,photo,description,price,units,color}){
+export default function CartCard(props){
+  const {title,photo,description,price,units,color} = props;
   return(
     <>
       <article className="bg-[#f2f2f2] rounded-[5px] p-[30px] m-[10px] h-[220px] break-words whitespace-normal flex justify-between">
