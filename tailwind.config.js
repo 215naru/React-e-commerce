@@ -8,6 +8,7 @@ export default {
     extend: {
       colors:{
         'custom-gray':'#eaeaea',
+        'custom-red':'#ff5151',
       },
       backgroundImage:{
         'hero': "url('/hero_bg.png')",
