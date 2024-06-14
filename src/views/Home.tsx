@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
 import ProductCard from "../components/ProductCard";
 import products from "../assets/products"
+import Product from "../interfaces/Product";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       <main className="w-full flex justify-center items-center p-[20px]">
         {/* <div className={styles["product-container"]} id="products"> */}
           <div className="w-[1080px] flex flex-wrap justify-between" id="products">
-          {products.map((each) => (
+          {products.map((each: Product) => (
             <ProductCard
               key = {each.id}
               id = {each.id}
