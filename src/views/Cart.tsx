@@ -34,6 +34,7 @@ export default function Cart() {
                     {productsOnCart.map((each) => (
                         <CartCard
                             key = {each.id}
+                            id = {each.id}
                             title = {each.title} 
                             photo = {each.images[0]} 
                             description = {each.description} 
