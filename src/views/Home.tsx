@@ -9,24 +9,24 @@ import Product from "../interfaces/Product";
 export default function Home() {
   return (
     <>
-      <NavBar/>
-      <Hero first="tecnologia" second="renovada"/>
+      <NavBar />
+      <Hero first="tecnologia" second="renovada" />
       <main className="w-full flex justify-center items-center p-[20px]">
         {/* <div className={styles["product-container"]} id="products"> */}
-          <div className="w-[1080px] flex flex-wrap justify-between" id="products">
+        <div className="w-[1080px] flex flex-wrap justify-between" id="products">
           {products.map((each: Product) => (
             <ProductCard
-              key = {each.id}
-              id = {each.id}
-              title = {each.title}
-              price = {each.price}
-              color = {each.colors[0]}
-              image = {each.images[0]}
+              key={each.id}
+              id={each.id}
+              title={each.title}
+              price={each.price}
+              images={each.images}
+              colors={each.colors}
             />
           ))}
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }
