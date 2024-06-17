@@ -1,5 +1,8 @@
 import styles from "./Description.module.css"
-export default function Description({product}) {
+import ProductProp from "../interfaces/ProductProp";
+
+export default function Description(props:ProductProp) {
+    const {product} = props;
     return (
         <>
             <section className={styles["product-description-block"]}>
