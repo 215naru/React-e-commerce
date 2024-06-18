@@ -3,10 +3,17 @@ import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
 import ProductCard from "../components/ProductCard";
-import products from "../assets/products"
+import axios from "axios"
+import { useEffect, useState } from "react";
 import Product from "../interfaces/Product";
 
 export default function Home() {
+  const [products,setProducts] = useState<Product[]>([]);
+  useEffect(()=>{
+    axios.get("/products.json")
+      .then((res)=>setProducts(res.data))
+      .catch((err)=>console.log(err))
+  },[]);
   return (
     <>
       <NavBar />
