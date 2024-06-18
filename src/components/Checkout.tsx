@@ -1,23 +1,24 @@
 import { useState, useEffect, useRef } from "react"
 import styles from "./Checkout.module.css"
 import ProductProp from "../interfaces/ProductProp";
-import CartProduct from "../interfaces/CartProduct";
+import Product from "../interfaces/Product";
 export default function Checkout(props: ProductProp) {
     const { product } = props;
     const [quantity, setQuantity] = useState(1);
     const [button, setButton] = useState(false);
     const units = useRef<HTMLInputElement>(null);
+    
     useEffect(() => {
-        let productsOnCart: CartProduct[] = [];
+        let productsOnCart: Product[] = [];
         const cart = localStorage.getItem("cart");
         if (cart) {
             productsOnCart = JSON.parse(cart);
         } else {
             localStorage.setItem("cart", JSON.stringify([]));
         }
-        const isInCart = productsOnCart?.find((each: CartProduct) => each.id === product.id);
+        const isInCart = productsOnCart?.find((each: Product) => each.id === product.id);
         if (isInCart) {
-            setQuantity(isInCart.units);
+            setQuantity(isInCart.units || 1);
             setButton(true);
         } else {
             setQuantity(1);
@@ -25,21 +26,21 @@ export default function Checkout(props: ProductProp) {
         }
     }, [product.id]);
     function manageCart() {
-        let productsOnCart: CartProduct[] = [];
+        let productsOnCart: Product[] = [];
         const cart = localStorage.getItem("cart");
         if (cart) {
             productsOnCart = JSON.parse(cart);
         }
-        const isInCart = productsOnCart?.find((each: CartProduct) => each.id === product.id);
+        const isInCart = productsOnCart?.find((each: Product) => each.id === product.id);
         if (!isInCart) {
-            const cartProduct: CartProduct = {
+            const cartProduct: Product = {
                 ...product,
                 units: Number(units.current?.value) || 1
             };
             productsOnCart.push(cartProduct);
             setButton(true);
         } else {
-            productsOnCart = productsOnCart.filter((each: CartProduct) => each.id !== product.id);
+            productsOnCart = productsOnCart.filter((each: Product) => each.id !== product.id);
             setButton(false);
         }
         localStorage.setItem("cart", JSON.stringify(productsOnCart));

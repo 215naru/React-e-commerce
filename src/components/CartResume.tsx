@@ -1,4 +1,9 @@
-export default function CartResume({total}) {
+interface Props{
+  total:number;
+}
+
+export default function CartResume(props:Props) {
+  const {total} = props;
   return (
     <>
       <div className="bg-[#f2f2f2] rounded-[5px] p-[30px] m-[10px] h-[220px] break-words whitespace-normal flex justify-between w-[340px] flex-col">

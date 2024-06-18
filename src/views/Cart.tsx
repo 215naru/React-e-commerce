@@ -3,18 +3,9 @@ import Footer from "../components/Footer"
 import Hero from "../components/Hero"
 import CartCard from "../components/CartCard"
 import CartResume from "../components/CartResume"
+import Product from "../interfaces/Product"
 import { useState } from "react"
 import { useEffect } from "react"
-
-interface Product{
-    id:number;
-    title: string;
-    images: string[];
-    description: string;
-    price: number;
-    units: number;
-    colors: string[];
-}
 
 export default function Cart() {
     const [productsOnCart, setProductsOnCart] = useState<Product[]>([]);
@@ -31,20 +22,14 @@ export default function Cart() {
             <Hero first="mi" second="carrito" />
             <main>
                 <section className="flex-flex-col">
-                    {productsOnCart.map((each) => (
+                    {productsOnCart.map((each: Product) => (
                         <CartCard
                             key = {each.id}
-                            id = {each.id}
-                            title = {each.title} 
-                            photo = {each.images[0]} 
-                            description = {each.description} 
-                            price = {each.price}
-                            units = {each.units}
-                            color = {each.colors[0]}
+                            product ={each}
                         />
                     ))}
                 </section>
-                <CartResume total="800000"/>
+                <CartResume total={90}/>
             </main>
             <Footer />
         </>
