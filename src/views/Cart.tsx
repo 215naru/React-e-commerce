@@ -6,15 +6,19 @@ import CartResume from "../components/CartResume"
 import Product from "../interfaces/Product"
 import { useState } from "react"
 import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import productsActions  from "../store/actions/products"
 
 export default function Cart() {
+    const {calculateTotal} = productsActions;
     const [productsOnCart, setProductsOnCart] = useState<Product[]>([]);
+    const dispatch = useDispatch();
     useEffect(() => {
-        const cart = localStorage.getItem("cart");
-        if (cart) {
-            const products = JSON.parse(cart);
-            setProductsOnCart(products);
-        }
+        const products = localStorage.getItem("cart");
+        if (products) {
+            setProductsOnCart(JSON.parse(products));
+            dispatch(calculateTotal({products: JSON.parse(products)}));
+        }   
     }, []);
     return (
         <>
@@ -29,7 +33,7 @@ export default function Cart() {
                         />
                     ))}
                 </section>
-                <CartResume total={90}/>
+                <CartResume/>
             </main>
             <Footer />
         </>
