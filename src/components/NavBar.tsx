@@ -1,13 +1,28 @@
 import NavButton from "./NavButton";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import productsActions from "../store/actions/products";
+
+const { captureText } = productsActions;
 
 export default function NavBar() {
+  const location = useLocation();
+  const pathname = location.pathname;
+  const text = useRef();
+  const textStore = useSelector(store=>store.products.text);
+  const dispatch = useDispatch();
+  const setText = () => {
+    dispatch(captureText({ text: text.current.value }));
+  };
   return (
     <header className="w-full min-h-[150px] bg-[#ff3b3c] p-[20px 20px 0 20px] flex flex-col items-center">
-      <div className="w-full flex flex-col justify-between items-center flex-grow 
+      <div
+        className="w-full flex flex-col justify-between items-center flex-grow 
         md:flex-row
         lg:w-[1024px]
-      ">
+      "
+      >
         <Link
           to="/"
           className="w-full md:w-1/3 flex items-center justify-center md:justify-start flex-grow pt-2 md:p-0"
@@ -20,16 +35,21 @@ export default function NavBar() {
           />
         </Link>
         <form className="w-full md:w-1/3 flex items-center flex-grow justify-center py-2 md:py-0">
-          <input
+          {pathname === "/" && (<input
+            defaultValue={textStore}
             className="h-[60px] border-0 rounded-[15px] w-full p-[10px] my-0 mx-[20px] text-[14px] text-center"
             type="text"
             placeholder="Search"
             id="search"
-          />
+            ref={text}
+            onChange={setText}
+          />)}
         </form>
-        <ul className="w-full md:w-1/3 flex items-center flex-grow justify-center pb-2
+        <ul
+          className="w-full md:w-1/3 flex items-center flex-grow justify-center pb-2
           md:justify-end md:py-0
-        ">
+        "
+        >
           <li id="facebook" className="w-[50px] h-[50px] list-none">
             <a className="w-[50px] h-[50px]" href="https://facebook.com">
               <img

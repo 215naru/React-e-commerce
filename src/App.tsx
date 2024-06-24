@@ -7,19 +7,21 @@ import Cart from "./views/Cart";
 import OnSale from "./views/OnSale";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFound from "./views/NotFound";
+import { Provider } from "react-redux";
+import store from "./store/index"
 
 function App() {
   const browserRouter = createBrowserRouter([
-    {path: "/", element:<Home/>},
-    {path: "/cart", element: <Cart/>},
-    {path: "/onsale", element: <OnSale/>},
-    {path: "/details/:id", element: <Details/>},
-    {path: "/*", element: <NotFound/>}
-  ]); 
+    { path: "/", element: <Home /> },
+    { path: "/cart", element: <Cart /> },
+    { path: "/onsale", element: <OnSale /> },
+    { path: "/details/:id", element: <Details /> },
+    { path: "/*", element: <NotFound /> }
+  ]);
   return (
-    <>
+    <Provider store={store}>
       <RouterProvider router={browserRouter} />
-    </>
+    </Provider>
   );
 }
 
