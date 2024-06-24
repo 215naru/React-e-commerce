@@ -1,9 +1,9 @@
-interface Props{
-  total:number;
-}
+import { useSelector } from "react-redux";
+import { RootState } from "./types";
 
-export default function CartResume(props:Props) {
-  const {total} = props;
+export default function CartResume() {
+  const total = useSelector((store: RootState)=>store.products.total);
+  console.log(total)
   return (
     <>
       <div className="bg-[#f2f2f2] rounded-[5px] p-[30px] m-[10px] h-[220px] break-words whitespace-normal flex justify-between w-[340px] flex-col">
