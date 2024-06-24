@@ -1,6 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
 import productsActions from "../actions/products";
-import { act } from "react";
 
 const { captureText, calculateTotal } = productsActions
 
@@ -25,7 +24,7 @@ const productsReducer = createReducer(
     const total = subtotals.reduce((acc:number, val:number) => acc + val);
     const newState = {
       ...state,
-      total,
+      total
     };
     return newState;
   }
