@@ -20,8 +20,9 @@ const productsReducer = createReducer(
       return newState
     }
   ).addCase(calculateTotal, (state,action)=>{
-    const subtotals = action.payload.products.map((each) => each.price*each.units);
-    const total = subtotals.reduce((acc:number, val:number) => acc + val);
+    const products = action.payload.products || [];
+    const subtotals = products.map((each) => each.price*each.units);
+    const total = subtotals.reduce((acc:number, val:number) => acc + val, 0);
     const newState = {
       ...state,
       total
